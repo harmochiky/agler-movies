@@ -14,9 +14,6 @@ const initialState = {
     received_movies: [],
     page: 1,
     api_page: 1,
-    todisplay: 9,
-    total_movies: 0,
-    max_movies: 45,
   },
   authData: {
     email: null,
@@ -31,15 +28,17 @@ const return_paginated_movies = (page = 1, movies, current, api_page) => {
     received_movies: [],
     page: 1,
     api_page: 1,
-    todisplay: 9,
-    total_movies: 0,
-    max_movies: 45,
     ...current,
   };
 
+  let required_movie_length = page * MOVIES_PER_PAGE;
+
   let fetched_movies = m_obj.received_movies.concat(movies);
   let movies_to_show = [];
-  movies_to_show = fetched_movies.slice(0, page * MOVIES_PER_PAGE);
+
+  if (required_movie_length <= fetched_movies.length) {
+    movies_to_show = fetched_movies.slice(0, page * MOVIES_PER_PAGE);
+  }
 
   m_obj = {
     ...m_obj,
@@ -72,15 +71,6 @@ const get_movies = async (type, page) => {
   }
 };
 
-// get the initial movies and load the initial 9
-// on press next load the local 9
-// on press next check if the local has available 9 else fecth more to load more 9
-
-const should_load_next = () => {
-  let confirmed = false;
-  return confirmed;
-};
-
 export const fetchMovies = createAsyncThunk(
   "aglet/popular",
   async ({ type, page }, thunkApi) => {
@@ -88,15 +78,21 @@ export const fetchMovies = createAsyncThunk(
       aglet: { popular },
     } = thunkApi.getState();
 
-    if (should_load_next()) {
-    } else {
-    }
-
+    let required_movie_length = page * MOVIES_PER_PAGE;
     let api_page = popular.api_page;
 
-    let movies = await get_movies(type, api_page);
-
-    return return_paginated_movies(page, movies, popular, api_page);
+    if (popular.movies.length === 0) {
+      let movies = await get_movies(type, api_page);
+      return return_paginated_movies(page, movies, popular, api_page);
+    } else {
+      if (required_movie_length <= popular.received_movies.length) {
+        return return_paginated_movies(page, [], popular, api_page);
+      } else {
+        let next_api_page = api_page + 1;
+        let movies = await get_movies(type, next_api_page);
+        return return_paginated_movies(page, movies, popular, next_api_page);
+      }
+    }
   },
 );
 
