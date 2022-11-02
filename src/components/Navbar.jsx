@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/img/aglet_logo.png";
 
 export default function Navbar() {
+  const authData = useSelector((state) => state.aglet.authData);
   return (
     <header>
       <nav className="nav-wrapper px-3">
@@ -21,7 +23,19 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <div>Login</div>
+          <div>
+            <ul>
+              {authData.authenticated ? (
+                <li>
+                  <div>Logout</div>
+                </li>
+              ) : (
+                <li>
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </nav>
     </header>

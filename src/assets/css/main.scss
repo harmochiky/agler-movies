@@ -212,3 +212,33 @@ a {
     opacity: 0.4;
   }
 }
+
+.t-primary {
+  color: var(--green);
+}
+.bold {
+  font-weight: 700;
+}
+.contact-page {
+  .form-control {
+    background: var(--light-grey);
+  }
+  .icon-section {
+    svg {
+      font-size: 24px;
+    }
+    span {
+      font-size: 13px;
+    }
+  }
+  a:hover {
+    transition: 0.4s all;
+    color: var(--green) !important;
+  }
+}
+
+.login-page {
+  .form-control {
+    background: var(--light-grey);
+  }
+}
