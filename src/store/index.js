@@ -17,9 +17,9 @@ const initialState = {
   },
   authData: {
     email: null,
-    authenticated: false,
+    authenticated: true,
+    favourite_movies: [],
   },
-  favourites: [],
 };
 
 const return_paginated_movies = (page = 1, movies, current, api_page) => {
@@ -96,12 +96,34 @@ export const fetchMovies = createAsyncThunk(
   },
 );
 
+export const fetchFavMovies = createAsyncThunk(
+  "aglet/favourites",
+  async ({ authenticated }, thunkApi) => {
+    const {
+      aglet: { authData },
+    } = thunkApi.getState();
+    try {
+      let movies = await axios.get("http://localhost:5000/api/favourites");
+      return {
+        ...authData,
+        favourite_movies: movies.data,
+      };
+    } catch (err) {
+      console.log(err);
+      return authData;
+    }
+  },
+);
+
 const AgletSlice = createSlice({
   name: "Aglet",
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.fulfilled, (state, action) => {
       state.popular = action.payload;
+    });
+    builder.addCase(fetchFavMovies.fulfilled, (state, action) => {
+      state.authData = action.payload;
     });
   },
 });
