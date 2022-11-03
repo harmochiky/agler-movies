@@ -9,7 +9,9 @@ export default function Navbar() {
     <header>
       <nav className="nav-wrapper px-3">
         <div className="container nav-container">
-          <img src={Logo} alt="" className="img-fluid logo" />
+          <Link to="/">
+            <img src={Logo} alt="" className="img-fluid logo" />
+          </Link>
           <div>
             <ul>
               <li>
