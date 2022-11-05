@@ -35,17 +35,23 @@ exports.addMovie = async (req, res) => {
   } = req.body;
 
   try {
-    const movie = await FavMovie.create({
-      title,
-      genre_ids,
-      movie_id: id,
-      release_date,
-      overview,
-      vote_average,
-      poster_path,
-      user_email: req.user.email,
-    });
-    res.status(200).json(movie);
+    const movies = await FavMovie.find({ movie_id: id });
+
+    if (movies.length <= 0) {
+      const movie = await FavMovie.create({
+        title,
+        genre_ids,
+        movie_id: id,
+        release_date,
+        overview,
+        vote_average,
+        poster_path,
+        user_email: req.user.email,
+      });
+      res.status(200).json(movie);
+    } else {
+      res.status(400).json({ error: "movie exists" });
+    }
   } catch (err) {
     res.status(400).json({ error: err });
   }
