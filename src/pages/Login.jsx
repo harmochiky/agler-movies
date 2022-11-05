@@ -1,16 +1,25 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setAuthData } from "../store";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const authenticated = useSelector(
+    (state) => state.aglet.authData.authenticated,
+  );
+  const navigate = useNavigate();
   const [userDets, setUserDets] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  if (authenticated) {
+    navigate("/");
+  }
 
   const onChange = (e) => {
     setUserDets({

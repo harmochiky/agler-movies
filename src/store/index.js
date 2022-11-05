@@ -17,9 +17,9 @@ const initialState = {
     api_page: 1,
   },
   authData: {
-    email: null,
     authenticated: false,
     favourite_movies: [],
+    token: "",
   },
 };
 
@@ -97,12 +97,24 @@ export const fetchMovies = createAsyncThunk(
   },
 );
 
+export const logoutUser = createAsyncThunk("aglet/user_logout", async () => {
+  localStorage.removeItem("@atk");
+  return false;
+});
+
 export const setAuthData = createAsyncThunk(
   "aglet/user_auth",
   async (token, thunkApi) => {
     console.log({ userRe: token });
-
-    return null;
+    const {
+      aglet: { authData },
+    } = thunkApi.getState();
+    localStorage.setItem("@atk", JSON.stringify(token));
+    return {
+      ...authData,
+      authenticated: true,
+      token: token,
+    };
   },
 );
 
@@ -113,7 +125,9 @@ export const fetchFavMovies = createAsyncThunk(
       aglet: { authData },
     } = thunkApi.getState();
     try {
-      let movies = await axios.get("http://localhost:5000/api/favourites");
+      let movies = await axios.get("http://localhost:5000/api/favourites", {
+        headers: { Authorization: `Bearer ${authData.token}` },
+      });
       return {
         ...authData,
         favourite_movies: movies.data,
@@ -134,6 +148,15 @@ const AgletSlice = createSlice({
     });
     builder.addCase(fetchFavMovies.fulfilled, (state, action) => {
       state.authData = action.payload;
+    });
+    builder.addCase(setAuthData.fulfilled, (state, action) => {
+      state.authData = action.payload;
+    });
+    builder.addCase(logoutUser.fulfilled, (state, action) => {
+      state.authData = {
+        ...state.authData,
+        authenticated: action.payload,
+      };
     });
   },
 });

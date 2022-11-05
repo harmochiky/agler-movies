@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/img/aglet_logo.png";
+import { logoutUser } from "../store";
 
 export default function Navbar() {
   const authData = useSelector((state) => state.aglet.authData);
+  const dispatch = useDispatch();
   return (
     <header>
       <nav className="nav-wrapper px-3">
@@ -29,7 +31,9 @@ export default function Navbar() {
             <ul>
               {authData.authenticated ? (
                 <li>
-                  <div>Logout</div>
+                  <div onClick={() => dispatch(logoutUser())} className="bold">
+                    Logout
+                  </div>
                 </li>
               ) : (
                 <li>
