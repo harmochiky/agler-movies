@@ -1,4 +1,3 @@
-const { default: mongoose } = require("mongoose");
 const FavMovie = require("../models/favouriteMovieModel");
 
 //get all workouts

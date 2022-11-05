@@ -1,5 +1,6 @@
 import {
   configureStore,
+  createAction,
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
@@ -17,7 +18,7 @@ const initialState = {
   },
   authData: {
     email: null,
-    authenticated: true,
+    authenticated: false,
     favourite_movies: [],
   },
 };
@@ -93,6 +94,15 @@ export const fetchMovies = createAsyncThunk(
         return return_paginated_movies(page, movies, popular, next_api_page);
       }
     }
+  },
+);
+
+export const setAuthData = createAsyncThunk(
+  "aglet/user_auth",
+  async (token, thunkApi) => {
+    console.log({ userRe: token });
+
+    return null;
   },
 );
 
