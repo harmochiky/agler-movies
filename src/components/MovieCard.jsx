@@ -37,6 +37,8 @@ export default function MovieCard({ movie }) {
       });
   };
 
+  if (!movie.poster_path) return null;
+
   return (
     <div className="movie-card">
       <div className="movie-rating">{movie.vote_average}</div>
@@ -53,7 +55,11 @@ export default function MovieCard({ movie }) {
         </div>
         <div className="mt-2 d-flex justify-content-between align-items-center">
           <span className="release-date">
-            {dayjs(new Date(movie.release_date).toISOString()).format("LL")}
+            {movie?.release_date ? (
+              <>
+                {dayjs(new Date(movie.release_date).toISOString()).format("LL")}
+              </>
+            ) : null}
           </span>
           <button onClick={handle_favourites} className="movie-add-to-fav-btn">
             <FiHeart />

@@ -7,7 +7,7 @@ export default function SearchArea() {
       <div className="text-center mt-3">
         <h1 className="home-big-text">Easily discover popular movies</h1>
       </div>
-      <div className="d-flex justify-content-center">
+      <div>
         <SearchBox />
       </div>
     </div>

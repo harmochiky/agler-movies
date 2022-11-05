@@ -36,7 +36,6 @@ exports.addMovie = async (req, res) => {
 
   try {
     const movies = await FavMovie.find({ movie_id: id });
-
     if (movies.length <= 0) {
       const movie = await FavMovie.create({
         title,
