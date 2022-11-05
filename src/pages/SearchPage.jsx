@@ -41,7 +41,7 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="py-5 container">
+    <div className="pb-5 container">
       <div className="mb-4">
         <SearchBox />
       </div>
