@@ -15,7 +15,7 @@ function App() {
     let token = localStorage.getItem("@atk");
 
     if (token) {
-      dispatch(setAuthData(token));
+      dispatch(setAuthData(JSON.parse(token)));
     }
   }, []);
 

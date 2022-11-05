@@ -31,6 +31,10 @@ const movieScema = new Schema(
     overview: {
       type: String,
     },
+    user_email: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

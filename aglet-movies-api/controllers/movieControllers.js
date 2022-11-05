@@ -2,7 +2,9 @@ const FavMovie = require("../models/favouriteMovieModel");
 
 //get all workouts
 exports.getFavs = async (req, res) => {
-  const movies = await FavMovie.find({}).sort({ createdAt: -1 });
+  const movies = await FavMovie.find({ user_email: req.user.email }).sort({
+    createdAt: -1,
+  });
   let movies_ = [];
 
   movies.forEach((x) => {
@@ -41,6 +43,7 @@ exports.addMovie = async (req, res) => {
       overview,
       vote_average,
       poster_path,
+      user_email: req.user.email,
     });
     res.status(200).json(movie);
   } catch (err) {

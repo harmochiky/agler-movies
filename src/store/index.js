@@ -110,6 +110,7 @@ export const setAuthData = createAsyncThunk(
       aglet: { authData },
     } = thunkApi.getState();
     localStorage.setItem("@atk", JSON.stringify(token));
+    // window.location.href = "/";
     return {
       ...authData,
       authenticated: true,

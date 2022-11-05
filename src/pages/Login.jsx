@@ -17,10 +17,6 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  if (authenticated) {
-    navigate("/");
-  }
-
   const onChange = (e) => {
     setUserDets({
       ...userDets,
@@ -40,6 +36,7 @@ export default function Login() {
         console.log({ data });
         setLoading(false);
         dispatch(setAuthData(data.data.token));
+        navigate("/");
       })
       .catch((err) => {
         setError(err.response.data.error);

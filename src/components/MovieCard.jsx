@@ -1,21 +1,34 @@
 import React from "react";
 import dayjs from "dayjs";
 
-import { FaHeart } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import axios from "axios";
+import { useSelector } from "react-redux";
 dayjs.extend(localizedFormat);
 
 const IMG_PATH = "https://image.tmdb.org/t/p/";
 
 export default function MovieCard({ movie }) {
+  const authenticated = useSelector(
+    (state) => state.aglet.authData.authenticated,
+  );
+  const token = useSelector((state) => state.aglet.authData.token);
   const handle_favourites = () => {
+    if (!authenticated) {
+      return alert("Please sign in first to add movies to favourites");
+    }
     axios
-      .post("http://localhost:5000/api/add/favourite", {
-        ...movie,
-      })
+      .post(
+        "http://localhost:5000/api/add/favourite",
+        {
+          ...movie,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      )
       .then((res) => {
         console.log("success", res.data);
       })

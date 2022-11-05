@@ -22,8 +22,6 @@ export default function Favourites() {
     dispatch(fetchFavMovies({ authenticated }));
   };
 
-  console.log({ movies });
-
   if (!authenticated) {
     return (
       <div className="py-5 container">
