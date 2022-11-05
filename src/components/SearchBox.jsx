@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 
+const IMG_PATH = "https://image.tmdb.org/t/p";
+
 export default function SearchBox() {
   const [focusIndex, setFocusIndex] = useState(-1);
   const [results, setResults] = useState([]);
@@ -49,7 +51,7 @@ export default function SearchBox() {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=263e31d1ad0c4defa8822787e614e716&language=en-US&query=${wordToMatch}&page=1&include_adult=false`;
     axios.get(url).then((data) => {
       let resp = data.data.results;
-      setResults(resp.slice(0, 7));
+      setResults(resp.slice(0, 5));
       setSearchText(wordToMatch);
       setFocusIndex(-1);
     });
@@ -86,15 +88,30 @@ export default function SearchBox() {
         {results.length > 0 ? (
           <div id="autocomplete-list" className="autocomplete-items">
             {results.map((x, index) => (
-              <div
+              <a
+                href={`/search?q=${x.title}`}
                 key={x.id}
                 className={`${
                   focusIndex === index ? "autocomplete-active" : ""
                 }`}
               >
-                {x.title}
-                <input type="hidden" defaultValue="Ecuador" />
-              </div>
+                <div className="d-flex align-items-center">
+                  <div>
+                    <img
+                      src={`${IMG_PATH}/original/${x.poster_path}`}
+                      className="img-fluid search-image"
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <div>{x.title}</div>
+                    <div className="small t-primary">
+                      Rating : {x.vote_average}
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" defaultValue={x.title} />
+              </a>
             ))}
           </div>
         ) : null}
