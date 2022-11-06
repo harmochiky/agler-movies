@@ -76,7 +76,16 @@ export default function MovieInfo() {
           </div>
           <div className="align-self-end">
             <h2 className="bold">{selectedMovie?.title}</h2>
-            <div className="mb-3 text-secondary">Date : 20-10-2000</div>
+            <div className="mb-3 text-secondary">
+              Date :{" "}
+              {selectedMovie?.release_date ? (
+                <>
+                  {dayjs(
+                    new Date(selectedMovie.release_date).toISOString(),
+                  ).format("LL")}
+                </>
+              ) : null}
+            </div>
             <p className="t-primary">{selectedMovie?.overview}</p>
             <div>
               <button

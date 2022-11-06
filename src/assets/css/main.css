@@ -207,6 +207,17 @@ a:hover {
   height: 40vh;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
+}
+.movie-card .movie-image .image-cover {
+  height: 100%;
+  width: 100%;
+  transition: 0.4s all;
+  z-index: 1;
+  position: absolute;
+}
+.movie-card .movie-image .image-cover:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 .movie-card .movie-image img {
   height: 100%;
@@ -276,6 +287,10 @@ a:hover {
 
 .login-page .form-control {
   background: var(--light-grey);
+}
+
+.cp {
+  cursor: pointer;
 }
 
 .movie-info-wrapper {

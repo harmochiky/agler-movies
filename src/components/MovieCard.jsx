@@ -48,9 +48,10 @@ export default function MovieCard({ movie }) {
   if (!movie.poster_path) return null;
 
   return (
-    <div className="movie-card mb-3">
+    <div className="movie-card mb-3 cp">
       <div className="movie-rating">{movie.vote_average}</div>
-      <div className="movie-image">
+      <div onClick={handle_view_more} className="movie-image">
+        <div className="image-cover"></div>
         <img
           src={`${IMG_PATH}/w500/${movie.poster_path}`}
           alt=""
@@ -58,7 +59,7 @@ export default function MovieCard({ movie }) {
         />
       </div>
       <div className="mt-2">
-        <div className="movie-title">
+        <div onClick={handle_view_more} className="movie-title">
           <span>{movie.title}</span>
         </div>
         <div className="mt-2 d-flex justify-content-between align-items-center">

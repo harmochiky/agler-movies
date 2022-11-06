@@ -212,7 +212,18 @@ a {
     height: 40vh;
     border-radius: 10px;
     overflow: hidden;
-
+    position: relative;
+    .image-cover {
+      height: 100%;
+      width: 100%;
+      transition: 0.4s all;
+      // background: rgba(0, 0, 0, 0.158);
+      z-index: 1;
+      position: absolute;
+      &:hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
+    }
     img {
       height: 100%;
       width: 100%;
@@ -288,7 +299,9 @@ a {
     background: var(--light-grey);
   }
 }
-
+.cp {
+  cursor: pointer;
+}
 .movie-info-wrapper {
   position: fixed;
   bottom: -999px;

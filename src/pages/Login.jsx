@@ -57,11 +57,11 @@ export default function Login() {
           <div className="alert py-1 mb-4 alert-danger">{error}</div>
         ) : null}
         <form onSubmit={handleFormSubmit} action="/">
-          <div className="mb-2 t-primary bold">Email or username</div>
+          <div className="mb-2 t-primary bold">Email</div>
           <input
             onChange={onChange}
             name="email"
-            placeholder="Your username or email"
+            placeholder="Your email e.g jointheteam@aglet.co.za"
             className="form-control mb-4"
             required
             type="email"
@@ -70,7 +70,7 @@ export default function Login() {
           <input
             onChange={onChange}
             name="password"
-            placeholder="Your password"
+            placeholder="Your password e.g @TeamAglet"
             className="form-control mb-3"
             type="password"
             required
