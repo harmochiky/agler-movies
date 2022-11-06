@@ -6,7 +6,7 @@ export default function Contact() {
   const [state, handleSubmit] = useForm("mvoyvddb");
 
   return (
-    <div className="container py-5 contact-page">
+    <div className="container py-5 px-sm-3 px-lg-0 px-3 contact-page">
       <div className="text-center">
         <h1 className="t-primary">Contact me</h1>
         <p className="text-secondary">
@@ -15,7 +15,7 @@ export default function Contact() {
       </div>
       <div className="container-fluid">
         <div className="row align-items-center">
-          <div className="col-6">
+          <div className="col-lg-6 col-md-6 col-12 mb-lg-3 mb-md-0 mb-4">
             {state.succeeded ? (
               <div className="text-dark h5 text-center alert alert-success">
                 Submitted !
@@ -59,7 +59,7 @@ export default function Contact() {
               </form>
             )}
           </div>
-          <div className="col-6 text-center text-secondary">
+          <div className="col-lg-6 col-md-6 col-12 text-center text-secondary">
             <div className="mb-3 bold">Movie site by Harmony Chikari</div>
             <a className="d-block" href="tel:+27835141538">
               Phone number : +27 83 514 1538

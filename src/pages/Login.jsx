@@ -52,7 +52,7 @@ export default function Login() {
           features
         </p>
       </div>
-      <div className="w-50 m-auto">
+      <div className="w-75 w-md-50 w-lg-50 m-auto">
         {error ? (
           <div className="alert py-1 mb-4 alert-danger">{error}</div>
         ) : null}

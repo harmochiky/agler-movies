@@ -204,7 +204,6 @@ a:hover {
   text-overflow: ellipsis;
 }
 .movie-card .movie-image {
-  height: 40vh;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -339,4 +338,18 @@ a:hover {
 
 .rp {
   border-radius: 15px;
+}
+
+@media only screen and (max-width: 1020px) {
+  .movie-card {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: 920px) {
+  .movie-card {
+    width: 33.33%;
+  }
+  .container {
+    max-width: 920px !important;
+  }
 }/*# sourceMappingURL=main.css.map */

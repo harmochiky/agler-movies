@@ -14,7 +14,7 @@ export default function Navbar() {
           <Link to="/">
             <img src={Logo} alt="" className="img-fluid logo" />
           </Link>
-          <div>
+          <div className="d-none d-md-block d-lg-block">
             <ul>
               <li>
                 <NavLink to="/">Home</NavLink>

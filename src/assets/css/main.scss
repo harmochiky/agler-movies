@@ -209,7 +209,7 @@ a {
   }
   .movie-image {
     // height: 85%;
-    height: 40vh;
+    // height: 40vh;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -349,4 +349,18 @@ a {
 
 .rp {
   border-radius: 15px;
+}
+
+@media only screen and (max-width: 1020px) {
+  .movie-card {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: 920px) {
+  .movie-card {
+    width: 33.33%;
+  }
+  .container {
+    max-width: 920px !important;
+  }
 }

@@ -37,7 +37,7 @@ export default function Favourites() {
   }
 
   return (
-    <div className="py-5 container">
+    <div className="py-5 container px-lg-0 px-md-3 px-3">
       <div className="text-center">
         <h1 className="t-primary">Your Favourite movies</h1>
         <p className="text-secondary">Showing your favourite movies</p>

@@ -20,7 +20,7 @@ export default function Home() {
 
   // console.log(popular);
   return (
-    <div className="mb-5">
+    <div className="mb-5 px-lg-0 px-md-3 px-3">
       <SearchArea />
       <FilterSection />
       <MovieList movies={popular.movies} />

@@ -48,7 +48,7 @@ export default function MovieCard({ movie }) {
   if (!movie.poster_path) return null;
 
   return (
-    <div className="movie-card mb-3 cp">
+    <div className="movie-card col-lg-2 col-md-3 col-sm-4 col-6 mb-3 cp">
       <div className="movie-rating">{movie.vote_average}</div>
       <div onClick={handle_view_more} className="movie-image">
         <div className="image-cover"></div>
@@ -63,7 +63,7 @@ export default function MovieCard({ movie }) {
           <span>{movie.title}</span>
         </div>
         <div className="mt-2 d-flex justify-content-between align-items-center">
-          <span className="release-date">
+          <span className="release-date d-none">
             {movie?.release_date ? (
               <>
                 {dayjs(new Date(movie.release_date).toISOString()).format("LL")}

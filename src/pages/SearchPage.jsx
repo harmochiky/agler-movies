@@ -41,7 +41,7 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="pb-5 container">
+    <div className="pb-5 container px-lg-0 px-md-3 px-3">
       <div className="mb-4">
         <SearchBox />
       </div>
