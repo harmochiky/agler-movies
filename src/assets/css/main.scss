@@ -341,7 +341,11 @@ a {
 .rp {
   border-radius: 15px;
 }
-
+@media only screen and (max-width: 450px) {
+  .search-btn {
+    display: none !important;
+  }
+}
 @media only screen and (max-width: 1020px) {
   .movie-card {
     width: 25%;
