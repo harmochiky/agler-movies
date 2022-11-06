@@ -47,11 +47,12 @@ export default function MovieInfo() {
     };
   }, [favourite_movies, selectedMovie]);
 
-  const handleClickOutside = (event) => {
-    if (!selectedMovie) return null;
-    const domNode = ReactDOM.findDOMNode(this);
-    if (!domNode || !domNode.contains(event.target)) {
-      dispatch(seeMore({ post: null }));
+  const handleClickOutside = (e) => {
+    if (compEl && compEl.current) {
+      const ref = compEl.current;
+      if (!ref.contains(e.target)) {
+        dispatch(seeMore({ post: null }));
+      }
     }
   };
 

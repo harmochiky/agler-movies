@@ -108,6 +108,9 @@ export const removeFromFav = createAsyncThunk(
       });
     } catch (err) {
       console.log(err);
+      return {
+        ...authData,
+      };
     }
 
     return {
@@ -138,6 +141,9 @@ export const addToFav = createAsyncThunk(
       );
     } catch (err) {
       console.log(err);
+      return {
+        ...authData,
+      };
     }
 
     return {
@@ -185,11 +191,21 @@ export const setAuthData = createAsyncThunk(
     } = thunkApi.getState();
     localStorage.setItem("@atk", JSON.stringify(token));
     // window.location.href = "/";
-    return {
-      ...authData,
-      authenticated: true,
-      token: token,
-    };
+
+    try {
+      let movies = await axios.get("http://localhost:5000/api/favourites", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return {
+        ...authData,
+        favourite_movies: movies.data,
+        authenticated: true,
+        token: token,
+      };
+    } catch (err) {
+      console.log(err);
+      return authData;
+    }
   },
 );
 
