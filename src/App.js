@@ -6,6 +6,7 @@ import { BASE_URL } from "./utils/contants";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAuthData } from "./store";
+import MovieInfo from "./components/MovieInfo";
 
 axios.defaults.baseURL = BASE_URL;
 
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <Router>
+      <MovieInfo />
       <Navbar />
       <Routes />
     </Router>

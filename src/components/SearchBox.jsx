@@ -98,7 +98,7 @@ export default function SearchBox() {
                 <div className="d-flex align-items-center">
                   <div>
                     <img
-                      src={`${IMG_PATH}/original/${x.poster_path}`}
+                      src={`${IMG_PATH}/w500/${x.poster_path}`}
                       className="img-fluid search-image"
                       alt=""
                     />

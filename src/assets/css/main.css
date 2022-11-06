@@ -272,4 +272,48 @@ a:hover {
 
 .login-page .form-control {
   background: var(--light-grey);
+}
+
+.movie-info-wrapper {
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(to left, rgb(85, 85, 85), black);
+  width: 100%;
+  z-index: 99;
+  box-shadow: 0 0 20px 1px var(--green);
+}
+.movie-info-wrapper .close-btn-wrapper {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+.movie-info-wrapper .close-btn-wrapper button {
+  border: none;
+  background: none;
+  padding: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.movie-info-wrapper .close-btn-wrapper button svg {
+  font-size: 40px;
+  color: white;
+  transition: 0.5s all;
+}
+.movie-info-wrapper .close-btn-wrapper button:hover svg {
+  color: var(--green);
+}
+.movie-info-wrapper .movie-image {
+  height: 300px;
+  margin-right: 30px;
+}
+.movie-info-wrapper .movie-image img {
+  height: 100%;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 13px;
+}
+
+.rp {
+  border-radius: 15px;
 }/*# sourceMappingURL=main.css.map */
