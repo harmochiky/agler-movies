@@ -280,11 +280,15 @@ a:hover {
 
 .movie-info-wrapper {
   position: fixed;
-  bottom: 0;
+  bottom: -999px;
   background: linear-gradient(to left, rgb(85, 85, 85), black);
   width: 100%;
   z-index: 99;
-  box-shadow: 0 0 20px 1px var(--green);
+  box-shadow: 0 0px 20px 1px rgba(0, 0, 0, 0.753);
+  transition: 0.3s all;
+}
+.movie-info-wrapper.active {
+  bottom: 0px;
 }
 .movie-info-wrapper .close-btn-wrapper {
   position: absolute;

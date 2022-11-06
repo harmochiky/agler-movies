@@ -7,7 +7,7 @@ import { MdMoreHoriz } from "react-icons/md";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addToLocalFav } from "../store";
+import { addToLocalFav, seeMore } from "../store";
 dayjs.extend(localizedFormat);
 
 const IMG_PATH = "https://image.tmdb.org/t/p/";
@@ -42,6 +42,10 @@ export default function MovieCard({ movie }) {
       });
   };
 
+  const handle_view_more = () => {
+    dispatch(seeMore({ post: movie }));
+  };
+
   if (!movie.poster_path) return null;
 
   return (
@@ -74,7 +78,8 @@ export default function MovieCard({ movie }) {
               <FiHeart />
             </button>
             <button
-              onClick={handle_favourites}
+              title="See more about this movie"
+              onClick={handle_view_more}
               className="movie-add-to-fav-btn"
             >
               <MdMoreHoriz className="" />

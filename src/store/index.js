@@ -19,6 +19,7 @@ const initialState = {
   authData: {
     authenticated: false,
     favourite_movies: [],
+    selectedMovie: null,
     token: "",
   },
 };
@@ -72,6 +73,19 @@ const get_movies = async (type, page) => {
   }
 };
 
+export const seeMore = createAsyncThunk(
+  "aglet/seeMore",
+  async ({ post }, thunkApi) => {
+    const {
+      aglet: { authData },
+    } = thunkApi.getState();
+
+    return {
+      ...authData,
+      selectedMovie: post,
+    };
+  },
+);
 export const addToLocalFav = createAsyncThunk(
   "aglet/add_to_local_fav",
   async ({ post }, thunkApi) => {
@@ -176,6 +190,9 @@ const AgletSlice = createSlice({
       };
     });
     builder.addCase(addToLocalFav.fulfilled, (state, action) => {
+      state.authData = action.payload;
+    });
+    builder.addCase(seeMore.fulfilled, (state, action) => {
       state.authData = action.payload;
     });
   },
