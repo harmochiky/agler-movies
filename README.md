@@ -39,23 +39,23 @@ NOTE : Points marked a "🌞" were marked as brownie points
 ## Screenshots
 
 <img
-width="255"
+width="355"
 alt="Capture 1"
 src="https://github.com/harmochiky/aglet-movies/blob/master/preview/capture-1.png">
 <img
-width="255"
+width="355"
 alt="Capture 2"
 src="https://github.com/harmochiky/aglet-movies/blob/master/preview/capture-2.png">
 <img
-width="255"
+width="355"
 alt="Capture 3"
 src="https://github.com/harmochiky/aglet-movies/blob/master/preview/capture-3.png">
 <img
-width="255"
+width="355"
 alt="Capture 4"
 src="https://github.com/harmochiky/aglet-movies/blob/master/preview/capture-4.png">
 <img
-width="255"
+width="355"
 alt="Capture 5"
 src="https://github.com/harmochiky/aglet-movies/blob/master/preview/capture-5.png">
 
@@ -119,6 +119,23 @@ When installation is complete, run server on port :5000 :
 yarn start or npm start
 ```
 
+## Default login details
+
+After running the project, for you to see and add favourite movies you need to be logged in. Navigate to the login page using the top menu. The following details can be used to login and test the app functionality.
+
+|  Field   |          Value          |
+| :------: | :---------------------: |
+|  Email   | jointheteam@aglet.co.za |
+| Password |       @TeamAglet        |
+
+## Logic
+
+The project has been build using the MERN stack (MongoDB, ExpressJS, ReactJS and NodeJS). Movies are sources from the moviedb api -> https://developers.themoviedb.org/3/getting-started/introduction. Stack was used to work better with the JSON movie responses received from the MovieDB API to cater for the easy storage of the JSON movie in the MongoDB database (NOSQL) and an easy authentication and querying of the stored movies. To also help with a stable use of authenticated end points, the NodeJS server was tied with ExpressJS.
+
+When the user signs in, the user can add/remove movies to favourites and load all movies stored. ReduxJS was also used to easily store and manage the app state including the loaded movies, authentication and the movie popup.
+
+ReactJS was to provide component based functionality.
+
 ## Issues ?
 
-Feel free to email me at harmochiky2@gmail.com if you need assistance with anything regarding this project
+Feel free to email me harmochiky2@gmail.com if you need assistance with anything regarding this project
