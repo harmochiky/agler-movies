@@ -1,49 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
-import { FiHeart } from "react-icons/fi";
+import { FiHeart, FiTrash } from "react-icons/fi";
 import { MdMoreHoriz } from "react-icons/md";
 
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addToLocalFav, seeMore } from "../store";
+import { addToFav, removeFromFav, seeMore } from "../store";
+import isFavMovie from "../utils/isFavMovie";
 dayjs.extend(localizedFormat);
 
 const IMG_PATH = "https://image.tmdb.org/t/p/";
 
 export default function MovieCard({ movie }) {
   const dispatch = useDispatch();
+  const [saved, setSaved] = useState(false);
 
   const authenticated = useSelector(
     (state) => state.aglet.authData.authenticated,
   );
-  const token = useSelector((state) => state.aglet.authData.token);
+  const favourite_movies = useSelector(
+    (state) => state.aglet.authData.favourite_movies,
+  );
+
+  useEffect(() => {
+    setSaved(isFavMovie(favourite_movies, movie));
+  }, []);
+
   const handle_favourites = () => {
     if (!authenticated) {
       return alert("Please sign in first to add movies to favourites");
     }
-    axios
-      .post(
-        "http://localhost:5000/api/add/favourite",
-        {
-          ...movie,
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        console.log("success", res.data);
-        dispatch(addToLocalFav({ post: movie }));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!saved) {
+      setSaved(true);
+      dispatch(addToFav({ movie }));
+    } else {
+      setSaved(false);
+      dispatch(removeFromFav({ movie }));
+    }
   };
 
   const handle_view_more = () => {
-    dispatch(seeMore({ post: movie }));
+    dispatch(seeMore({ movie }));
   };
 
   if (!movie.poster_path) return null;
@@ -72,10 +71,11 @@ export default function MovieCard({ movie }) {
           </span>
           <div className="d-flex align-items-center">
             <button
+              title={saved ? "Remove from favourites" : "Add to favourites"}
               onClick={handle_favourites}
               className="movie-add-to-fav-btn mr-2"
             >
-              <FiHeart />
+              {saved ? <FiTrash /> : <FiHeart />}
             </button>
             <button
               title="See more about this movie"

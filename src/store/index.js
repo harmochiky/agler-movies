@@ -75,26 +75,70 @@ const get_movies = async (type, page) => {
 
 export const seeMore = createAsyncThunk(
   "aglet/seeMore",
-  async ({ post }, thunkApi) => {
+  async ({ movie }, thunkApi) => {
     const {
       aglet: { authData },
     } = thunkApi.getState();
 
     return {
       ...authData,
-      selectedMovie: post,
+      selectedMovie: movie,
     };
   },
 );
-export const addToLocalFav = createAsyncThunk(
-  "aglet/add_to_local_fav",
-  async ({ post }, thunkApi) => {
+export const removeFromFav = createAsyncThunk(
+  "aglet/removeFromFav",
+  async ({ movie }, thunkApi) => {
     const {
       aglet: { authData },
     } = thunkApi.getState();
 
     let favourite_movies = [];
-    favourite_movies.push(post);
+    const id = movie.id;
+
+    authData.favourite_movies.forEach((x) => {
+      if (x.id !== id) {
+        favourite_movies.push(x);
+      }
+    });
+
+    try {
+      await axios.delete(`http://localhost:5000/api/favourite/${id}`, {
+        headers: { Authorization: `Bearer ${authData.token}` },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    return {
+      ...authData,
+      favourite_movies,
+    };
+  },
+);
+export const addToFav = createAsyncThunk(
+  "aglet/addToFav",
+  async ({ movie }, thunkApi) => {
+    const {
+      aglet: { authData },
+    } = thunkApi.getState();
+
+    let favourite_movies = [];
+    favourite_movies.push(movie);
+
+    try {
+      await axios.post(
+        "http://localhost:5000/api/add/favourite",
+        {
+          ...movie,
+        },
+        {
+          headers: { Authorization: `Bearer ${authData.token}` },
+        },
+      );
+    } catch (err) {
+      console.log(err);
+    }
 
     return {
       ...authData,
@@ -189,10 +233,13 @@ const AgletSlice = createSlice({
         authenticated: action.payload,
       };
     });
-    builder.addCase(addToLocalFav.fulfilled, (state, action) => {
+    builder.addCase(addToFav.fulfilled, (state, action) => {
       state.authData = action.payload;
     });
     builder.addCase(seeMore.fulfilled, (state, action) => {
+      state.authData = action.payload;
+    });
+    builder.addCase(removeFromFav.fulfilled, (state, action) => {
       state.authData = action.payload;
     });
   },

@@ -58,12 +58,16 @@ exports.addMovie = async (req, res) => {
 
 //delete workout
 exports.deleteFav = async (req, res) => {
-  const { id } = req.params.id;
+  const id = req.params.id;
 
-  const movie = FavMovie.findOne({ movie_id: id });
+  const movie = await FavMovie.findOneAndDelete({
+    movie_id: id,
+    user_email: req.user.email,
+  });
 
   if (movie) {
-    await FavMovie.deleteOne({ movie_id: id });
-    return res.status(200).json("deleted");
+    return res.status(200).json({ success: "deleted" });
+  } else {
+    return res.status(400).json({ success: "movie not found" });
   }
 };

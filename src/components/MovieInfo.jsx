@@ -1,24 +1,63 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
-import { seeMore } from "../store";
+import { addToFav, removeFromFav, seeMore } from "../store";
+import isFavMovie from "../utils/isFavMovie";
 dayjs.extend(localizedFormat);
 
 const IMG_PATH = "https://image.tmdb.org/t/p/";
 
 export default function MovieInfo() {
+  const compEl = useRef(null);
   const dispatch = useDispatch();
+  const [saved, setSaved] = useState(false);
+
   const selectedMovie = useSelector(
     (state) => state.aglet.authData.selectedMovie,
   );
-  //   if (!selectedMovie) {
-  //     return null;
-  //   }
+  const authenticated = useSelector(
+    (state) => state.aglet.authData.authenticated,
+  );
+  const favourite_movies = useSelector(
+    (state) => state.aglet.authData.favourite_movies,
+  );
+
+  const handle_fav = () => {
+    if (!authenticated) {
+      return alert("Please sign in first to add movies to favourites");
+    }
+    if (!saved) {
+      setSaved(true);
+      dispatch(addToFav({ movie: selectedMovie }));
+    } else {
+      setSaved(false);
+      dispatch(removeFromFav({ movie: selectedMovie }));
+    }
+  };
+
+  useEffect(() => {
+    setSaved(isFavMovie(favourite_movies, selectedMovie));
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [favourite_movies, selectedMovie]);
+
+  const handleClickOutside = (event) => {
+    if (!selectedMovie) return null;
+    const domNode = ReactDOM.findDOMNode(this);
+    if (!domNode || !domNode.contains(event.target)) {
+      dispatch(seeMore({ post: null }));
+    }
+  };
+
   return (
     <div
+      ref={compEl}
       className={`movie-info-wrapper shadow-sm ${
         selectedMovie ? "active" : ""
       }`}
@@ -26,11 +65,13 @@ export default function MovieInfo() {
       <div className="container py-5">
         <div className="d-flex w-75 align-items-center justify-content-betwee">
           <div className="movie-image">
-            <img
-              src={`${IMG_PATH}/w500/${selectedMovie?.poster_path}`}
-              className=""
-              alt=""
-            />
+            {selectedMovie ? (
+              <img
+                src={`${IMG_PATH}/w500/${selectedMovie?.poster_path}`}
+                className=""
+                alt=""
+              />
+            ) : null}
           </div>
           <div className="align-self-end">
             <h2 className="bold">{selectedMovie?.title}</h2>
@@ -38,12 +79,13 @@ export default function MovieInfo() {
             <p className="t-primary">{selectedMovie?.overview}</p>
             <div>
               <button
+                onClick={handle_fav}
                 style={{
                   width: "fit-content",
                 }}
                 className="btn btn-green rp"
               >
-                Add to favourites
+                {saved ? "Remove from favourites" : "Add to favourites"}
               </button>
             </div>
           </div>
