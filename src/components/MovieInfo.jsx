@@ -9,6 +9,7 @@ dayjs.extend(localizedFormat);
 const IMG_PATH = "https://image.tmdb.org/t/p/";
 
 export default function MovieInfo() {
+  return null;
   return (
     <div className="movie-info-wrapper shadow-sm">
       <div className="container py-5">

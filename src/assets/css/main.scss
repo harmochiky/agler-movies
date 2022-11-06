@@ -228,10 +228,17 @@ a {
     border-radius: 5px;
   }
   .movie-add-to-fav-btn {
-    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 0;
+    border: 1px solid var(--green);
+    border-radius: 100px;
     background: none;
     color: var(--green);
-    height: fit-content;
+    // height: fit-content;
     outline: none;
     cursor: pointer;
     svg {

@@ -72,6 +72,23 @@ const get_movies = async (type, page) => {
   }
 };
 
+export const addToLocalFav = createAsyncThunk(
+  "aglet/add_to_local_fav",
+  async ({ post }, thunkApi) => {
+    const {
+      aglet: { authData },
+    } = thunkApi.getState();
+
+    let favourite_movies = [];
+    favourite_movies.push(post);
+
+    return {
+      ...authData,
+      favourite_movies,
+    };
+  },
+);
+
 export const fetchMovies = createAsyncThunk(
   "aglet/popular",
   async ({ type, page }, thunkApi) => {
@@ -105,7 +122,6 @@ export const logoutUser = createAsyncThunk("aglet/user_logout", async () => {
 export const setAuthData = createAsyncThunk(
   "aglet/user_auth",
   async (token, thunkApi) => {
-    console.log({ userRe: token });
     const {
       aglet: { authData },
     } = thunkApi.getState();
@@ -158,6 +174,9 @@ const AgletSlice = createSlice({
         ...state.authData,
         authenticated: action.payload,
       };
+    });
+    builder.addCase(addToLocalFav.fulfilled, (state, action) => {
+      state.authData = action.payload;
     });
   },
 });
