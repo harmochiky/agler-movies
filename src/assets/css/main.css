@@ -75,7 +75,6 @@ a:hover {
 
 .home-search-container {
   box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.582);
-  width: 60%;
   position: relative;
   display: flex;
   align-items: center;
@@ -194,14 +193,9 @@ a:hover {
   color: var(--green);
   border: 3px solid var(--green);
 }
-.movie-card .movie-title span {
+.movie-card .movie-title {
   font-weight: 700;
   color: var(--green);
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .movie-card .movie-image {
   border-radius: 10px;
@@ -233,7 +227,6 @@ a:hover {
   border-radius: 5px;
 }
 .movie-card .movie-add-to-fav-btn {
-  width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -326,7 +319,6 @@ a:hover {
 }
 .movie-info-wrapper .movie-image {
   height: 300px;
-  margin-right: 30px;
 }
 .movie-info-wrapper .movie-image img {
   height: 100%;
@@ -352,4 +344,43 @@ a:hover {
   .container {
     max-width: 920px !important;
   }
+}
+@media screen and (min-width: 992px) {
+  .home-search-container {
+    width: 60% !important;
+  }
+  .login-form {
+    width: 50% !important;
+  }
+}
+.mobile-menu {
+  position: fixed;
+  top: -999px;
+  background: var(--green);
+  width: 100%;
+  box-shadow: 0 0 10px 5px rgb(14, 13, 13);
+  transition: 0.4s all;
+}
+.mobile-menu.open {
+  top: 0;
+}
+.mobile-menu .close-item {
+  position: flex;
+  float: right;
+}
+.mobile-menu .close-item svg {
+  font-size: 40px;
+}
+.mobile-menu .menu_list {
+  padding-top: 30px;
+}
+.mobile-menu .menu_list ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.mobile-menu .menu_list ul li a {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 25px;
 }/*# sourceMappingURL=main.css.map */

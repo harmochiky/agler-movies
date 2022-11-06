@@ -74,7 +74,7 @@ export default function SearchBox() {
         autocomplete="off"
         action="/search"
         onSubmit={handle_submit}
-        className="home-search-container px-3 py-3 mt-5"
+        className="home-search-container w-lg-75 w-md-50 w-sm-75 w-100 px-3 py-3 mt-5"
       >
         <IoSearch className="search-icon" />
         <input

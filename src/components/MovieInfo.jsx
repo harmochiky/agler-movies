@@ -64,8 +64,8 @@ export default function MovieInfo() {
       }`}
     >
       <div className="container py-5">
-        <div className="d-flex w-75 align-items-center justify-content-betwee">
-          <div className="movie-image">
+        <div className="d-fle w-100 row px-3 w-lg-75 align-items-center justify-content-betwee">
+          <div className="movie-image col-lg-3 col-col-md-3 col-sm-12">
             {selectedMovie ? (
               <img
                 src={`${IMG_PATH}/w500/${selectedMovie?.poster_path}`}
@@ -74,7 +74,7 @@ export default function MovieInfo() {
               />
             ) : null}
           </div>
-          <div className="align-self-end">
+          <div className="align-self-end col-lg-9 col-md-9 col-sm-12">
             <h2 className="bold">{selectedMovie?.title}</h2>
             <div className="mb-3 text-secondary">
               Date :{" "}

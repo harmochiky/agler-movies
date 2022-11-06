@@ -59,11 +59,11 @@ export default function MovieCard({ movie }) {
         />
       </div>
       <div className="mt-2">
-        <div onClick={handle_view_more} className="movie-title">
-          <span>{movie.title}</span>
+        <div onClick={handle_view_more} className="movie-title text-truncate">
+          {movie.title}
         </div>
-        <div className="mt-2 d-flex justify-content-between align-items-center">
-          <span className="release-date d-none">
+        <div className="mt-2 d-fle justify-content-between align-items-center">
+          <span className="release-date d-block mb-2">
             {movie?.release_date ? (
               <>
                 {dayjs(new Date(movie.release_date).toISOString()).format("LL")}
@@ -81,8 +81,9 @@ export default function MovieCard({ movie }) {
             <button
               title="See more about this movie"
               onClick={handle_view_more}
-              className="movie-add-to-fav-btn"
+              className="movie-add-to-fav-btn px-2"
             >
+              more
               <MdMoreHoriz className="" />
             </button>
           </div>
