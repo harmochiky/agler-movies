@@ -82,7 +82,7 @@ export const seeMore = createAsyncThunk(
 
     return {
       ...authData,
-      selectedMovie: movie,
+      selectedMovie: authData.selectedMovie ? null : movie,
     };
   },
 );

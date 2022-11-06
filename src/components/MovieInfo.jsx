@@ -12,7 +12,7 @@ dayjs.extend(localizedFormat);
 const IMG_PATH = "https://image.tmdb.org/t/p/";
 
 export default function MovieInfo() {
-  const compEl = useRef(null);
+  const compEl = useRef();
   const dispatch = useDispatch();
   const [saved, setSaved] = useState(false);
 
