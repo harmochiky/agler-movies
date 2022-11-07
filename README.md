@@ -136,7 +136,7 @@ After running the project, for you to see and add favourite movies you need to b
 
 ## Logic
 
-The project has been build using the MERN stack (MongoDB, ExpressJS, ReactJS and NodeJS). Movies are sourced from the moviedb api -> https://developers.themoviedb.org/3/getting-started/introduction. Stack was used to work better with the JSON movie responses received from the MovieDB API to cater for the easy storage of the JSON movie in the MongoDB database (NOSQL) and an easy authentication and querying of the stored movies. To also help with a stable use of authenticated end points, the NodeJS server was tied with ExpressJS.
+The project has been build using the MERN stack (MongoDB, ExpressJS, ReactJS and NodeJS). Movies are sourced from the moviedb api -> https://developers.themoviedb.org/3/getting-started/introduction. The **MERN stack** was used to work better with the JSON movie responses received from the MovieDB API to cater for the easy storage of the JSON movie in the MongoDB database (NOSQL) and an easy authentication and querying of the stored movies. To also help with a stable use of authenticated end points, the NodeJS server was tied with ExpressJS.
 
 When the user signs in, the user can add/remove movies to favourites and load all movies stored. ReduxJS was also used to easily store and manage the app state including the loaded movies, authentication and the movie popup.
 
