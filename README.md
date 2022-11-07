@@ -34,7 +34,7 @@
 - **Includes popup to see more movie information**🌞
 - **NodeJS server**
 
-NOTE : Points marked a "🌞" were marked as brownie points
+NOTE : Points marked a "🌞" were marked as brownie points and completed
 
 ## Screenshots
 
