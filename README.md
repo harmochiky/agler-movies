@@ -68,7 +68,7 @@ src="https://github.com/harmochiky/aglet-movies/blob/master/preview/mobile-captu
 <img
 width="205"
 alt="Capture 2 Mobile"
-src="https://github.com/harmochiky/aglet-movies/blob/master/preview/mobile-capture-1.png">
+src="https://github.com/harmochiky/aglet-movies/blob/master/preview/mobile-capture-2.png">
 
 ## Installation and usage
 
