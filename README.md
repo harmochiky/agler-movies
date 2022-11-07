@@ -121,7 +121,7 @@ yarn start or npm start
 
 ## Database
 
-Data is currently stored on the mongodb atlas online (Online version of MongoDB). The database dump has also been attached at this [file here](https://github.com/harmochiky/aglet-movies/tree/master/database-dump).
+Data is currently stored on the mongodb atlas online (Online version of MongoDB). The database dump has also been attached at this [file here](https://github.com/harmochiky/aglet-movies/tree/master/database-dump/test).
 
 To access the altas account with the database. An invitation has been sent to jointheteam@aglet.co.za email for a personal organization called "Harmony's Org" accessing the project database clusters for "Aglet Movies". Simple open your email and check for an email **from MongoDB Cloud** with an invitation and click the accept invitation in which you will be taken directly to the live database.
 
