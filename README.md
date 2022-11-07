@@ -119,6 +119,12 @@ When installation is complete, run server on port :5000 :
 yarn start or npm start
 ```
 
+## Database
+
+Data is currently stored on the mongodb atlas online (Online version of MongoDB). The database dump has also been attached at this [file here](https://github.com/harmochiky/aglet-movies/tree/master/database-dump).
+
+To access the altas account with the database. An invitation has been sent to jointheteam@aglet.co.za email for a personal organization called "Harmony's Org" accessing the project database clusters for "Aglet Movies". Simple open your email and check for an email **from MongoDB Cloud** with an invitation and click the accept invitation in which you will be taken directly to the live database.
+
 ## Default login details
 
 After running the project, for you to see and add favourite movies you need to be logged in. Navigate to the login page using the top menu. The following details can be used to login and test the app functionality.
